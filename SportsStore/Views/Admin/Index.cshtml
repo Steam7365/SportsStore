@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "所有商品";
+    Layout = "_AdminLayout";
+}
+@if (Model.Count() == 0)
+{
+    <div class="text-center m-2">
+        <form asp-action="SeedDatabase" method="post">
+            <button type="submit" class="btn btn-danger">
+                添加种子数据
+            </button>
+        </form>
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-sm">
+        <tr>
+            <th class="text-right">ID</th>
+            <th>产品名称</th>
+            <th class="text-right">产品价格</th>
+            <th class="text-center">操作</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-right">@item.ProductID</td>
+                <td>@item.Name</td>
+                <td class="text-center">@item.Price.ToString("c")</td>
+                <td class="text-center">
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" class="btn btn-sm btn-warning"
+                   asp-route-productId="@item.ProductID">
+                            编辑
+                        </a>
+                        <input type="hidden" value="@item.ProductID" name="ProductID" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            删除
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<div class="text-center">
+    <a asp-action="Create" class="btn btn-primary">添加商品</a>
+</div>

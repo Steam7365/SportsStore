@@ -1,0 +1,21 @@
+﻿@model IEnumerable<string>
+
+<a class="btn btn-block btn-secondary"
+   asp-action="List" asp-controller="Product" asp-route-category="">
+    首页
+</a>
+
+@*
+    循环所有类别（不重复）
+    点击时，跳转到Product的Index页面，并把类别作为参数发送过去
+*@
+@foreach (var category in Model)
+{
+    <a class="btn btn-block @(category==ViewBag.SelectedCategory?"btn-primary":"btn-secondary")"
+   asp-action="List"
+   asp-controller="Product"
+   asp-route-category=@category
+   asp-route-productPage="1">
+        @category
+    </a>
+}

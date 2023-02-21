@@ -1,0 +1,28 @@
+﻿@model Product
+
+<div class="card card-outLine-primary m-1 p-1">
+
+    @*设置商品信息*@
+    <div class="bg-faded p-1">
+        <h4>
+            @Model.Name
+            <span class="badge badge-pill badeg-primary" style="float:right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+        </h4>
+        @*<div class="card-text p-1">@Model.Description</div>*@
+    </div>
+
+    @*设置添加购物车按钮*@
+    <form id="@Model.ProductID" asp-action="AddToCart" asp-controller="Cart" method="post">
+        <input type="hidden"  asp-for="ProductID" />
+        @*获取该页面的链接*@
+        <input type="hidden" value="@ViewContext.HttpContext.Request.PathAndQuery()" name="returnUrl" />
+        <span class="card-text p-1">
+            @Model.Description
+            <button type="submit" class="btn btn-success btn-sm pull-right" style="float:right">
+                添加购物车
+            </button>
+        </span>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SportsStore</title>
+    <link rel="stylesheet" asp-href-include="/lib/bootstrap/dist/**/*.min.css" />
+    <link rel="stylesheet" asp-href-exclude="**/*-reboot*,**/*-grid" />
+    <link rel="stylesheet" asp-href-include="/lib/font.awesome/5.15.4/Content/Content/*.min.css" />
+@*    <link rel="stylesheet" href="~/lib/font.awesome/5.15.4/Content/Content/all.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/brands.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/fontawesome.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/regular.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/solid.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/svg-with-js.css" />
+    <link rel="stylesheet" href="/lib/font.awesome/5.15.4/Content/Content/v4-shims.css" />*@
+
+    @*<link rel="stylesheet" href="~/lib/fontawesome/4.7.0/Content/Content/font-awesome.css" />*@
+</head>
+<body>
+    @*<div class="navbar navbar-inverse bg-inverse" role="navigation">
+        <a class="navbar-brand" href="#"></a>
+    </div>*@
+
+    <div class="row">
+        <a class="col navbar-brand" href="#">Rodio的商店</a>
+        @*跳转到购物车*@
+        <div class="col-4 text-right">
+            @await Component.InvokeAsync("CartSummary")
+        </div>
+    </div>
+
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            @*老子的商店，每件商品销量为999999。*@
+
+            @*当调用这个方法时会从所有文件中寻找继承ViewComponent名为NavigationMenu的子类
+            然后调用该类的Invoke()方法*@
+            @await Component.InvokeAsync("NavigationMenu")
+        </div>
+        <div class="col-9">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

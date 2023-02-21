@@ -1,0 +1,25 @@
+﻿@model ProductsListViewModel
+
+@foreach (var item in Model.Products)
+{
+    @*<div class="card card-outLine-primary m-1 p-1">
+        <div class="bg-faded p-1">
+        <h4>
+        @item.Name
+        <span class="badge badge-pill badeg-primary" style="float:right">
+        <small>@item.Price.ToString("c")</small>
+        </span>
+        </h4>
+        <div class="card-text p-1">@item.Description</div>
+        </div>
+        </div>*@
+    @await Html.PartialAsync("ProductSummary",item)
+}
+
+@*设置分页按钮，点击分页时，将第几页作为参数发送给当前页面*@
+<div page-model="@Model.PagingInfo" page-action="List"
+     page-url-category="@Model.CurrentCategory"
+     page-classes-enabled="true" page-class="btn" page-class-normal="btn-secondary"
+     page-class-selected="btn-primary" class="btn-group pull-right m-1">
+</div>
+
